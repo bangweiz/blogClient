@@ -1,0 +1,25 @@
+<div class="sidebar">
+  <div class="sidebar-greeting">
+    <p>WELCOME LEO</p>
+  </div>
+  <ul class="sidebar-list">
+    <li class="sidebar-item" *ngFor="let item of items">
+      <a *ngIf="!item.subLink; else list" [routerLink]="[item.url]" routerLinkActive="active">
+        <i class="fas" [ngClass]="item.icon"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        {{item.label | uppercase}}
+      </a>
+      <ng-template #list>
+        <a [routerLink]="item.url" routerLinkActive="active">
+          <i class="fas" [ngClass]="item.icon"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+          {{item.label | uppercase}}&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fas fa-chevron-down"></i>
+        </a>
+        <div class="sidebar-sub-item">
+          <a *ngFor="let link of item.subLink" [routerLink]="link.url" routerLinkActive="active">
+            {{link.label | uppercase}}
+          </a>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,34 @@
+<div class="category">
+  <div class="category-add">
+    <h2>Add a new Category</h2>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="title">Category Title: </label>
+        <input type="text" id="title" formControlName="title" autocomplete="off">
+      </div>
+      <button class="submit-btn">Submit</button>
+    </form>
+  </div>
+  <div class="category-list">
+    <h2>Categories</h2>
+    <table *ngIf="categories.length" class="category-list-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Last Modification</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of categories">
+          <td>{{c.title | uppercase}}</td>
+          <td>{{c.modified_on | date}}</td>
+          <td>
+            <button (click)="onDelete(c.id)" class="delete-btn">Delete</button>
+            <button class="edit-btn">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

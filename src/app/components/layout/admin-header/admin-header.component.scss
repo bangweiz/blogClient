@@ -1,0 +1,19 @@
+.admin-header {
+  width: 85%;
+  height: 65px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #eeeeee;
+  .admin-header-location, .admin-header-link {
+    height: 65px;
+    line-height: 65px;
+    font-size: 20px;
+    padding: 0 50px;
+  }
+  .admin-header-link {
+    cursor: pointer;
+  }
+}

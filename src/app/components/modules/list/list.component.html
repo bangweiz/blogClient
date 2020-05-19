@@ -1,0 +1,10 @@
+<div class="posts">
+  <ul *ngIf="posts.length > 0" class="posts-list">
+    <li *ngFor="let post of posts" class="posts-item">
+      <p>
+        <span>{{post.createdOn | date}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a [routerLink]="['/posts', post.id]">{{post.title | uppercase}}</a>
+      </p>
+    </li>
+  </ul>
+</div>

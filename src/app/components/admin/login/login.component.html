@@ -1,0 +1,37 @@
+<div class="login-panel">
+  <img src="assets/avatar.svg" alt="avatar" class="login-img">
+  <h2 class="login-greeting">WELCOME</h2>
+  <div *ngIf="error && error.message">
+    <p class="login-error">{{error.message}}</p>
+  </div>
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="login-form">
+    <div>
+      <div class="login-input-group" [ngClass]="{error: error && error.email}">
+        <label for="email">Email:</label>
+        <div>
+          <i class="fas fa-user-alt"></i>
+          <input type="text" id="email" formControlName="email" autocomplete="off">
+        </div>
+      </div>
+      <div *ngIf="error && error.email">
+        <p class="login-error">{{error.email}}</p>
+      </div>
+    </div>
+    <div>
+      <div class="login-input-group" [ngClass]="{error: error && error.password}">
+        <label for="password">Password:</label>
+        <div>
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" formControlName="password">
+        </div>
+      </div>
+      <div *ngIf="error && error.password">
+        <p class="login-error">{{error.password}}</p>
+      </div>
+    </div>
+    <button class="login-btn" [disabled]="loginBtnDisabled">
+      <app-spinner *ngIf="loginBtnDisabled"></app-spinner>
+      LOGIN
+    </button>
+  </form>
+</div>
