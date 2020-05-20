@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from "../../../models/post.model";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../reducers/index.reducer";
+import {FetchPosts} from "../../../actions/posts.action";
 
 @Component({
   selector: 'app-list',
@@ -7,14 +10,15 @@ import { Post } from "../../../models/post.model";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  posts: Array<Post>
-  constructor() { }
+  posts: Array<Post> = []
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.posts = [
-      { id: 1, title: 'Depth First Search', content: 'Hello World', createdOn: 'Thu May 07 2020 19:40:18 GMT+1000 (Australian Eastern Standard Time)' },
-      { id: 2, title: 'Width First Search', content: 'Hello World', createdOn: 'Thu May 05 2020 19:40:18 GMT+1000 (Australian Eastern Standard Time)' }
-    ]
+    if (!this.posts.length) {
+      this.store.dispatch(new FetchPosts())
+    }
+    this.store.select("posts").subscribe((posts: Array<Post>) => {
+      this.posts = posts
+    })
   }
-
 }

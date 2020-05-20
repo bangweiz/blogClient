@@ -18,3 +18,7 @@ export interface LoginSuccess {
 export interface LoginSuccessReturnData extends LoginSuccess{
   token: string
 }
+export interface User {
+  id: number
+  username: string
+}

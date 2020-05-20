@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { Store } from "@ngrx/store";
 
-import { AppState } from "../reducers/index.reducer";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -14,7 +12,7 @@ export class CategoryService {
     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
   };
 
-  constructor(private http: HttpClient, private store: Store<AppState>) {}
+  constructor(private http: HttpClient) {}
 
   fetchCategories = (): Observable<any> => {
     return this.http.get(`${this.url}all`)

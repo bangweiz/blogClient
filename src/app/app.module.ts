@@ -29,6 +29,7 @@ import { CategoryEffects } from "./effects/category.effects";
 import { AuthInterceptor } from "./interceptors/auth-interceptor";
 import { NewPostComponent } from './components/admin/new-post/new-post.component';
 import { PostComponent } from './components/admin/post/post.component';
+import { PostsEffects } from "./effects/posts.effects";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { PostComponent } from './components/admin/post/post.component';
     HttpClientModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ logOnly: false }),
-    EffectsModule.forRoot([AuthEffects, CategoryEffects])
+    EffectsModule.forRoot([AuthEffects, CategoryEffects, PostsEffects])
   ],
   providers: [
     [
