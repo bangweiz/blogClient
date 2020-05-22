@@ -14,6 +14,6 @@ export class PostService {
   }
 
   fetchPost = (id: string): Observable<any> => {
-    return this.http.get(`${this.url}${id}`)
+    return this.http.get(`${this.url}detail/${id}`)
   }
 }

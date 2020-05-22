@@ -2,5 +2,5 @@
   <h1 class="single-title">{{post.title | uppercase}}</h1>
   <h3 *ngIf="post.subtitle" class="single-subtitle">{{post.subtitle}}</h3>
   <p class="single-date">{{post.created_on | date}}</p>
-  <div class="single-content">{{post.content}}</div>
+  <div class="single-content" [innerHTML]="post.content"></div>
 </div>

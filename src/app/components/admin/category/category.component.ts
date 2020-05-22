@@ -4,6 +4,7 @@ import { Category } from "../../../models/category";
 import { Store } from "@ngrx/store";
 import { AppState } from "../../../reducers/index.reducer";
 import {DeleteCategory, FetchCategories, NewCategory} from "../../../actions/category.action";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-category',
@@ -20,9 +21,11 @@ export class CategoryComponent implements OnInit {
     this.categoryForm = new FormGroup({
       title: new FormControl('')
     })
-    if (!this.categories.length) {
-      this.store.dispatch(new FetchCategories())
-    }
+    this.store.select('categories').pipe(take(1)).subscribe((categories: Array<Category>) => {
+      if (categories.length === 0) {
+        this.store.dispatch(new FetchCategories())
+      }
+    })
     this.store.select('categories').subscribe((categories: Array<Category>) => {
       this.categories = categories
     })

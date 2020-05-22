@@ -12,16 +12,10 @@ import { TokenCheck } from "../actions/auth.action";
 })
 export class LoginService {
   url: string = 'http://localhost:8000/api/user/'
-  options = {
-    headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-  };
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
   login = (data: UserLogin): Observable<any> => {
-    let body = new URLSearchParams()
-    body.set('email', data.email)
-    body.set('password', data.password)
-    return this.http.post(`${this.url}login`, body.toString(), this.options)
+    return this.http.post(`${this.url}login`, data)
   }
 
   parseToken = (token: string) => {
